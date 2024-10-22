@@ -1,0 +1,18 @@
+props = read-only that are shared between components.A parent component can send the data to a child component.
+<component key= value />
+
+basically props is pass as a objects
+
+// React Hooks = Special function that allows  functional components to use React features without writing class 
+class components (useState, Useeffect, useContext,....)
+
+//Usestate()= A react hook that allows the creation of a stateful variable AND a stter function to update in the 
+virtual DOM. [name, setName];
+
+ // conditional rendering 
+
+ // rendering lists
+ function List(){
+
+ }
+ export default List;
