@@ -1,46 +1,54 @@
 import React, { useState } from 'react';
-import Start from './Components/Start'
-import TodoForm from './Components/TodoForm'
+import Start from './Components/Start';
+import TodoForm from './Components/TodoForm';
 import TodoList from './Components/TodoList';
 import './App.css';
 
 function App() {
-  const [tasks, setTasks] = useState([]);// store the array of task
-  const [currentTask, setCurrentTask] = useState(null);// add current task
+  const [tasks, setTasks] = useState([]);  // Store the array of tasks
+  const [currentTask, setCurrentTask] = useState(null);  // Add current task
   const [isEditing, setIsEditing] = useState(false);
+  const [taskInput, setTaskInput] = useState('');  // Task input for the form
 
-  
- const addTask = (newTaskText)=>{
-    setTasks([...tasks,{id:Date.now(), text:newTaskText}]);
-    
- }
-//  console.log(Date.now());
- const editTask = (task)=>{
-  setIsEditing(true);
-  setCurrentTask(task);
- };
- const updateTask =(updatedTaskText)=>{
-  setTasks(tasks.map(task => task.id === currentTask.id ? { ...task, text: updatedTaskText } : task))
-  setIsEditing(false);
-  setCurrentTask(null);
- };
- const deleteTask = (id) => {
-  setTasks(tasks.filter(task => task.id !== id));
-};
-// console.log("->>>",tasks);
+  // Add new task
+  const addTask = (newTaskText) => {
+    setTasks([...tasks, { id: Date.now(), text: newTaskText }]);
+  };
+
+  // Edit an existing task
+  const editTask = (task) => {
+    setCurrentTask(task);  // Set current task for editing
+    setTaskInput(task.text);  // Set taskInput to the current task text
+    setIsEditing(true);  // Enable editing mode
+  };
+
+  // Update an existing task
+  const updateTask = (updatedTaskText) => {
+    setTasks(tasks.map(task => 
+      task.id === currentTask.id ? { ...task, text: updatedTaskText } : task
+    ));
+    setIsEditing(false);  // Exit editing mode
+    setCurrentTask(null);  // Reset current task
+    setTaskInput('');  // Clear input
+  };
+
+  // Delete a task
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  };
 
   return (
     <div className="App">
-      <Start/>
-      <TodoForm 
-      addTask ={addTask} 
-      updateTask={updateTask}
-      isEditing = {isEditing} 
-      currentTask ={currentTask}
-       />
-       
-      <TodoList tasks ={tasks} editTask={editTask} deleteTask={deleteTask} />
-      
+      <Start />
+      <TodoForm
+        task={taskInput}
+        setTask={setTaskInput}
+        addTask={addTask}
+        updateTask={updateTask}
+        isEditing={isEditing}
+        currentTask={currentTask}
+      />
+      <TodoList tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
     </div>
   );
 }
