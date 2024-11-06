@@ -1,30 +1,21 @@
 import React from "react";
 import TodoItem from "./TodoItem"
 import TodoForm from "./TodoForm";
-const TodoList = () =>{
-  const data = [
-   { id:1,
-   item:"this is first task"
-  },
-  {id:2,
-    item:"this is second task"
-  },
-  {
-    id:3,
-    item:"this is third task"
-  },
-  {id:4,
-    item:"this is fourth task"
-  }
-  ];
+const TodoList = ({tasks,editTask,deleteTask}) =>{
 
-  // const items = data.map(task => task.item
 
+console.log(tasks, '--->');
     return (
+      <>
+      <div className="know">
+      <div className="mark">Mark</div>
+      <div className="Task">Task</div>
+      <div className="Actions">Actions</div>
+     </div>
       <ul className="lists">
-      {data.map(items => <TodoItem key={items.id} item={items} />)}
-      
+      {tasks.length >0 && tasks.map(task => <TodoItem keyX={task.id}   task={task} />)}
       </ul>  
+      </>
     );
 
 }

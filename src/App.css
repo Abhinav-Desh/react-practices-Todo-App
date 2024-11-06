@@ -98,7 +98,24 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.edit:hover, .delete:hover {
-  background-color: rgb(9, 201, 254);
+.delete:hover {
+  background-color: rgb(218, 21, 51);
   color: white;
+}
+
+.edit:hover{
+  background-color: rgb(16, 208, 237);
+  color: white;
+}
+
+.know{
+  width: 45%;
+  background-color: white;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

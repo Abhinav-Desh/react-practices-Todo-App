@@ -1,13 +1,13 @@
 import React,{useState} from "react";
 
-const TodoItem = ({item})=>{
+const TodoItem = ({task, keyX})=>{
     
-    console.log(item.id+"-->"+item.item);
+    console.log(task.id+"-->"+task.text, "===>", keyX);
     return(
-       <div>
+       <div key={keyX}>
         <li className="items">
           <div><input type="checkbox" /></div> 
-          <div className="data">{item.item}</div>
+          <div className="data">{task.text}</div>
             <button className="edit">edit</button>
             <button className="delete">delete</button>
         </li>
