@@ -60,6 +60,9 @@ body {
 .lists {
   width: 90%;
   max-width: 600px;
+  max-height: 300px;
+  overflow: scroll;
+  overflow-x: auto;
   margin: 10px auto;
   padding: 10px;
 }
@@ -154,10 +157,7 @@ input[type="checkbox"] {
     overflow-x: auto; /* Enable horizontal scroll when text overflows */
   }
 
-  .checkbox-item {
-    margin-bottom: 10px; /* Space out the checkbox from the text */
-  }
-
+ 
   .action-buttons {
     width: 40%;
     justify-content: space-between;
@@ -171,6 +171,7 @@ input[type="checkbox"] {
     width: 100%;
   }
 
+ 
   .edit, .delete {
     width: 48%;
     margin-left: 0;
