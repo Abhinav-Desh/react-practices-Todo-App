@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
-import Start from './Components/Start';
-import TodoForm from './Components/TodoForm';
+import Start from './Components/Start'
 import TodoList from './Components/TodoList';
+import TodoForm from './Components/TodoForm';
 import './App.css';
 
 function App() {
-  const [tasks, setTasks] = useState([]);  // Store the array of tasks
-  const [currentTask, setCurrentTask] = useState(null);  // Add current task
+  const [tasks, setTasks] = useState([]);
+  const [taskInput, setTaskInput] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [taskInput, setTaskInput] = useState('');  // Task input for the form
+  const [currentTask, setCurrentTask] = useState(null);
 
-  // Add new task
+  // Add new task to the list
   const addTask = (newTaskText) => {
-    setTasks([...tasks, { id: Date.now(), text: newTaskText }]);
+    setTasks([...tasks, { id: Date.now(), text: newTaskText, completed: false }]);
   };
 
-  // Edit an existing task
+  // Edit a task
   const editTask = (task) => {
-    setCurrentTask(task);  // Set current task for editing
-    setTaskInput(task.text);  // Set taskInput to the current task text
-    setIsEditing(true);  // Enable editing mode
+    setCurrentTask(task);
+    setTaskInput(task.text);
+    setIsEditing(true);
   };
 
-  // Update an existing task
+  // Update task after editing
   const updateTask = (updatedTaskText) => {
-    setTasks(tasks.map(task => 
+    setTasks(tasks.map(task =>
       task.id === currentTask.id ? { ...task, text: updatedTaskText } : task
     ));
-    setIsEditing(false);  // Exit editing mode
-    setCurrentTask(null);  // Reset current task
-    setTaskInput('');  // Clear input
+    setIsEditing(false);
+    setCurrentTask(null);
   };
 
   // Delete a task
@@ -37,9 +36,16 @@ function App() {
     setTasks(tasks.filter(task => task.id !== id));
   };
 
+  // Toggle task completion
+  const toggleCompletion = (id) => {
+    setTasks(tasks.map(task =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    ));
+  };
+
   return (
     <div className="App">
-      <Start />
+      <Start/>
       <TodoForm
         task={taskInput}
         setTask={setTaskInput}
@@ -48,7 +54,13 @@ function App() {
         isEditing={isEditing}
         currentTask={currentTask}
       />
-      <TodoList tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
+      <TodoList
+  tasks={tasks}
+  editTask={editTask}
+  deleteTask={deleteTask}
+  toggleCompletion={toggleCompletion}
+/>
+
     </div>
   );
 }

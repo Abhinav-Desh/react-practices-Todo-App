@@ -1,23 +1,27 @@
-import React from "react";
+import React from 'react';
 
-const TodoItem = ({ task, editTask, deleteTask }) => {
-  console.log(task.id + " --> " + task.text);
-
+const TodoItem = ({ task, editTask, deleteTask, toggleCompletion }) => {
   return (
-    <li className="items" key={task.id}>
-      <div>
-        <input type="checkbox" />
+    <div className="items">
+      <div className='checkbox-item'>
+        <input
+          type="checkbox"
+          checked={task.completed}
+          onChange={() => toggleCompletion(task.id)} // Toggle completion status
+        />
       </div>
-      <div className="data">{task.text}</div>
-      <button className="edit" onClick={() => editTask(task)}>Edit</button>
-      <button 
-        className="delete"
-        onClick={() => deleteTask(task.id)} // Pass task id to delete
+      <div
+        className="data"
+        style={{ textDecoration: task.completed ? 'line-through' : 'none' }}
       >
-        Delete
-      </button>
-    </li>
+        {task.text}
+      </div>
+      <div className='action-buttons'>
+        <button className="edit" onClick={() => editTask(task)}>Edit </button>
+        <button className="delete" onClick={() => deleteTask(task.id)}>Delete </button>
+      </div>
+    </div>
   );
-};
+}
 
 export default TodoItem;

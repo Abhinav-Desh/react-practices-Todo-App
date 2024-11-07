@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ tasks, editTask, deleteTask }) => {
+const TodoList = ({ tasks, editTask, deleteTask,toggleCompletion }) => {
   return (
     <>
       <div className="know">
@@ -17,6 +17,7 @@ const TodoList = ({ tasks, editTask, deleteTask }) => {
               task={task}
               editTask={editTask}
               deleteTask={deleteTask}
+              toggleCompletion={toggleCompletion}
             />
           ))}
       </ul>

@@ -31,7 +31,8 @@ body {
 }
 
 .input-text {
-  flex: 1;
+  flex: 1 1;
+  width: 100%;
   height: 50px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -73,18 +74,35 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.items div {
-  flex: 1;
-  display: flex;
-  align-items: center;
+.checkbox-item {
+  flex: 0 0 auto;
 }
 
 .data {
-  flex: 1;
+  flex: 1 1 60%;
   padding-left: 10px;
   font-size: 18px;
+  white-space: nowrap; 
+  overflow-x: auto; 
+  
+  max-width: 100%; 
+  width: 100%;
+}
+
+.action-buttons {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+  justify-content: center;
 }
 
 .edit, .delete {
@@ -103,13 +121,14 @@ body {
   color: white;
 }
 
-.edit:hover{
+.edit:hover {
   background-color: rgb(16, 208, 237);
   color: white;
 }
 
-.know{
-  width: 45%;
+.know {
+  width: 90%;
+  max-width: 600px;
   background-color: white;
   margin: 10px auto;
   padding: 15px;
@@ -118,4 +137,43 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Responsive adjustments for mobile screens */
+@media screen and (max-width: 480px) {
+  
+  .items {
+    flex-direction: row; /* Stack items vertically on small screens */
+    align-items: center; /* Align items to the start */
+  }
+
+  .data {
+    max-width: 50%;
+    font-size: 16px;
+    white-space: nowrap; /* Keep the text in a single line */
+    overflow-x: auto; /* Enable horizontal scroll when text overflows */
+  }
+
+  .checkbox-item {
+    margin-bottom: 10px; /* Space out the checkbox from the text */
+  }
+
+  .action-buttons {
+    width: 40%;
+    justify-content: space-between;
+  }
+
+  .addbutton {
+    width: 20%;
+  }
+
+  .input-text {
+    width: 100%;
+  }
+
+  .edit, .delete {
+    width: 48%;
+    margin-left: 0;
+    margin-top: 5px;
+  }
 }
