@@ -5,7 +5,7 @@ const TodoForm = ({ task, setTask, addTask, updateTask, isEditing, currentTask }
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (task.trim() && task[0]!='') {
+    if (task.trim() && task[0]!=='') {
       if (isEditing) {
         updateTask(task); // Update the existing task
       } else {
